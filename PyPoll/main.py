@@ -31,9 +31,15 @@ with open(csvpath, newline='') as csvfile:
     occurrence = Counter((row[2]) for row in csv.reader(csvfile))
 maxVotes = 0
 file = open("testfile.txt", "w")
-
+file.write("Election Results \n ")
+file.write("----------------------------------- \n")
+print("-----------------------------------")
+file.write("Total Votes: %s \n " % len(votes))
+file.write("----------------------------------- \n")
 for cnt in Names:
-    print(cnt, ":",  occurrence[cnt]/len(votes)*100, " (", occurrence[cnt], ")")
+    print(cnt, ":", occurrence[cnt] / len(votes) * 100, " (", occurrence[cnt], ")")
+#    #file.write("%s %s %s \n " % cnt % ":" % occurrence[cnt]/len(votes)*100 % " (" % occurrence[cnt] % ")")
+    file.write(str(cnt) + ": " + str(occurrence[cnt]/len(votes)*100) + " (" + str(occurrence[cnt]) + ")" "\n")
     if occurrence[cnt]/len(votes)*100 > maxVotes:
         maxVotesName = cnt
         maxVotes = occurrence[cnt]/len(votes)*100
@@ -41,4 +47,5 @@ print("-----------------------------------")
 print("Winner :", maxVotesName)
 print("-----------------------------------")
 
-file.write("Winner :" + maxVotesName)
+
+file.write("Winner :%s \n " % str(maxVotesName))
